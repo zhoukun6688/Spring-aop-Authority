@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+       
+    <context:component-scan base-package="com.spring"/>
+    
+   <!--  自动注入properties属性文件 -->
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <property name="locations">
+	      <list>
+	        <value>classpath:conf/jdbc.properties</value>
+	      </list>
+	    </property>
+    </bean>
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties" ref="configProperties" />
+    </bean>
+
+
+    <!-- 配置redis客户端单机版 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="host" value="192.168.141.128"></constructor-arg>
+        <!--<constructor-arg name="host" value="r-2zeb452b11eeaa04.redis.rds.aliyuncs.com"></constructor-arg>-->
+        <constructor-arg name="port" value="6379"></constructor-arg>
+    </bean>
+    <!-- 配置redis客户端实现类 -->
+    <bean id="jedisClientSingle" class="com.spring.mybatis.componet.impl.JedisClientSingle"/>
+
+    <!-- springMVC配置 -->
+    <import resource="spring-mvc.xml"/>
+    <!-- mybatis配置 -->
+    <import resource="spring-mybatis.xml"/>
+    
+</beans>
