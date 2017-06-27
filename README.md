@@ -13,4 +13,7 @@ mysql+redis
 创建名为itoo_test的数据库，执行sql文件下的sql脚本
 ## 启动项目
 导入项目后，项目中内置tomcat插件，将项目启动起来后，输入访问localhost:8080/login访问主页，输入用户名：admin 密码：随便写一个
-
+## 项目说明
+http://blog.csdn.net/zhoukun1008/article/details/73756837 <br>
+http://blog.csdn.net/zhoukun1008/article/details/73760810 <br>
+http://blog.csdn.net/zhoukun1008/article/details/73761701
