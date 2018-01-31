@@ -53,6 +53,8 @@ public class LoginController {
 		}
 		@RequestMapping("/accessDenied")
 		public String accessDenied(HttpSession session){
+
+			System.out.println("ceshi");
 			return "error";
 		}
 		
