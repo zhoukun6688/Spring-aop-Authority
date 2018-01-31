@@ -1,23 +1,20 @@
 package com.spring.mybatis.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
+import com.spring.mybatis.model.User;
+import com.spring.mybatis.service.UserService;
+import com.spring.security.ValidatePermission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.mybatis.model.User;
-import com.spring.mybatis.service.UserService;
-import com.spring.security.ValidatePermission;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -51,7 +48,7 @@ public class UserController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public List<User> retrieveUser(){
-		List<User> list=new ArrayList<User>();
+		List<User> list=new ArrayList<>();
 		list.add(userService.getUser(1));
 		return list;
 		
