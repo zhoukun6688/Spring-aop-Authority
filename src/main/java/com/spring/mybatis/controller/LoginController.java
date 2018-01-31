@@ -26,7 +26,7 @@ public class LoginController {
 	//登陆页面
 		@RequestMapping("/login")
 		public String login(Model model)throws Exception{
-			
+			System.out.println("hahaahahahahahahahaahaha");
 			return "login";
 		}
 		
