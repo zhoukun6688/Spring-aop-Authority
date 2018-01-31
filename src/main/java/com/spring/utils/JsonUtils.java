@@ -35,7 +35,6 @@ public class JsonUtils {
 				T t = MAPPER.readValue(jsonData, clazz);
 				return t;
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				logger.info("转换出错",e);
 			}
 		}
