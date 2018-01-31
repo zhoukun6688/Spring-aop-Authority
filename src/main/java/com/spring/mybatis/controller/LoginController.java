@@ -4,8 +4,6 @@ import com.spring.mybatis.model.Role;
 import com.spring.mybatis.model.User;
 import com.spring.mybatis.service.RoleService;
 import com.spring.mybatis.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +14,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
 	@Resource
 	private UserService userService;
 	@Resource
@@ -26,13 +22,13 @@ public class LoginController {
 	//登陆页面
 		@RequestMapping("/login")
 		public String login(Model model){
+			System.out.println("欢迎你登录成功！！！！！！！！！！！！！！！！！！！！！");
 			return "login";
 		}
 		
 		//登陆提交
-		//account：用户登录名，pwd：密码
 		@RequestMapping("/loginsubmit")
-		public String loginsubmit(HttpSession session,String account,String pwd)throws Exception{
+		public String loginsubmit(HttpSession session,String account,String pwd){
 			User user=userService.getUserByAccount(account);
 			if(user!=null){
 				Role role = roleService.selectRoleByUserId(user.getId());
@@ -49,7 +45,7 @@ public class LoginController {
 		
 		//退出
 		@RequestMapping("/logout")
-		public String logout(HttpSession session)throws Exception{
+		public String logout(HttpSession session){
 			
 			//session过期
 			session.invalidate();
@@ -57,8 +53,7 @@ public class LoginController {
 			return "redirect:login";
 		}
 		@RequestMapping("/accessDenied")
-		public String accessDenied(HttpSession session)throws Exception{
-			
+		public String accessDenied(HttpSession session){
 			return "error";
 		}
 		
