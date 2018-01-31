@@ -19,7 +19,7 @@ public class LoginController {
 	@Resource
 	private RoleService roleService;
 	
-	//登陆页面
+
 		@RequestMapping("/login")
 		public String login(Model model){
 			return "login";
