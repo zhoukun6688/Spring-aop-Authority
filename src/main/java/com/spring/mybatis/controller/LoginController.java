@@ -22,7 +22,6 @@ public class LoginController {
 	//登陆页面
 		@RequestMapping("/login")
 		public String login(Model model){
-			System.out.println("欢迎你登录成功！！！！！！！！！！！！！！！！！！！！！");
 			return "login";
 		}
 		
