@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -25,7 +27,7 @@ import com.spring.mybatis.service.UserService;
 public class PermissionAspect {
 	@Resource
 	private CheckAuthorityService checkAuthorityService;
-
+    private static final Logger logger= LoggerFactory.getLogger(PermissionAspect.class);
     public void doBefore(JoinPoint jp) throws IOException{
         //System.out.println("log PermissionAspect Before method: " + jp.getTarget().getClass().getName() + "." + jp.getSignature().getName());
         Method soruceMethod = getSourceMethod(jp);
@@ -52,9 +54,9 @@ public class PermissionAspect {
         try {
             return jp.getTarget().getClass().getMethod(proxyMethod.getName(), proxyMethod.getParameterTypes());
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            logger.info("出错了",e);
         } catch (SecurityException e) {
-            e.printStackTrace();
+            logger.info("出错了",e);
         }
         return null;
     }
